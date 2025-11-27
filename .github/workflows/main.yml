@@ -22,6 +22,10 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore
 
+      # Format
+      - name: Format
+        run: dotnet format --verify-no-changes
+
       # Build the app
       - name: Build
         run: dotnet build --configuration Release --no-restore
