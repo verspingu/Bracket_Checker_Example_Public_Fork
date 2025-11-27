@@ -1,0 +1,35 @@
+name: Demo_job
+run-name: This action has been run
+
+on: [push]
+
+jobs:
+  demo_job:
+    runs-on: ubuntu-latest # eeh
+    steps:
+      - run: echo "ola world"
+      
+      - name: Checkout
+        uses: actions/checkout@v6.0.0
+
+        # Install .NET SDK
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x" # Change to your version (6.0, 7.0, etc.)
+
+      # Restore dependencies
+      - name: Restore dependencies
+        run: dotnet restore
+
+      # Format
+      - name: Format
+        run: dotnet format --verify-no-changes
+
+      # Build the app
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+
+      # Run tests (if you have tests)
+      - name: Run tests
+        run: dotnet test --configuration Release --no-build --verbosity normal
