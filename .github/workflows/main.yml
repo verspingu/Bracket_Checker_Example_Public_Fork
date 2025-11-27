@@ -1,0 +1,10 @@
+name: Demo_job
+run-name: This action has been run
+
+on: [push]
+
+jobs:
+  demo_job:
+    runs-on: ubuntu-latest # eeh
+    steps:
+      - run: echo "ola world"
